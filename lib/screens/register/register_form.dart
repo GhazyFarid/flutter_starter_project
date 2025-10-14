@@ -4,6 +4,7 @@ import 'package:flutter_starter_project/providers/register_providers.dart';
 import 'package:flutter_starter_project/widgets/custom_text_field.dart';
 import 'package:flutter_starter_project/widgets/password_text_field.dart';
 import 'package:flutter_starter_project/widgets/primary_button.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterForm extends ConsumerWidget {
   const RegisterForm({super.key});
@@ -102,6 +103,31 @@ class RegisterForm extends ConsumerWidget {
                   onPressed: () => notifier.register(),
                   isLoading: state.isLoading,
                 ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Footer
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Already have an account? '),
+                  TextButton(
+                    onPressed: () => context.push('/login'),
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.all(10),
+                      minimumSize: Size(0, 0),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

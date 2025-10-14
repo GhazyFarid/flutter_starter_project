@@ -90,10 +90,15 @@ class LoginForm extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text("Don't have an account? "),
-                    GestureDetector(
-                      onTap: () {
+                    TextButton(
+                      onPressed: () {
                         context.push('/register');
                       },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        minimumSize: Size(0, 0),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       child: Text(
                         'Register',
                         style: TextStyle(
