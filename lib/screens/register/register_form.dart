@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_project/providers/register_providers.dart';
 import 'package:flutter_starter_project/widgets/custom_text_field.dart';
 import 'package:flutter_starter_project/widgets/password_text_field.dart';
+import 'package:flutter_starter_project/widgets/primary_button.dart';
 
 class RegisterForm extends ConsumerWidget {
   const RegisterForm({super.key});
@@ -94,34 +95,12 @@ class RegisterForm extends ConsumerWidget {
                   ),
                 ),
 
-              //Register Button
               SizedBox(
-                height: 48,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  onPressed: state.isLoading ? null : () => notifier.register(),
-                  child: state.isLoading
-                      ? const SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text(
-                          'Register',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                width: double.infinity,
+                child: PrimaryButton(
+                  text: 'Register',
+                  onPressed: () => notifier.register(),
+                  isLoading: state.isLoading,
                 ),
               ),
             ],

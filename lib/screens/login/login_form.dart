@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_project/widgets/primary_button.dart';
 import 'package:go_router/go_router.dart';
 import '../../../providers/auth_providers.dart';
 
@@ -78,34 +79,18 @@ class LoginForm extends ConsumerWidget {
 
                 // Login button
                 SizedBox(
-                  height: 48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                  width: double.infinity,
+                  child: PrimaryButton(
+                    text: "Login",
+                    onPressed: () => notifier.login(
+                      onSuccess: () {
+                        context.go('/dashboard');
+                      },
                     ),
-                    onPressed: state.isLoading ? null : () => notifier.login(),
-                    child: state.isLoading
-                        ? const SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Colors.white,
-                            ),
-                          )
-                        : const Text(
-                            'Login',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                    isLoading: state.isLoading,
                   ),
                 ),
+
                 const SizedBox(height: 16),
 
                 // Footer
