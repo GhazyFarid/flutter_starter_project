@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_project/screens/landing_screen.dart';
-import 'package:flutter_starter_project/screens/login_screen.dart';
-import 'package:flutter_starter_project/screens/register_screen.dart';
+import 'package:flutter_starter_project/screens/landing_page/landing_screen.dart';
+import 'package:flutter_starter_project/screens/login/login_screen.dart';
+import 'package:flutter_starter_project/screens/register/register_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {

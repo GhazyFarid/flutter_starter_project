@@ -9,16 +9,24 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      height: 48,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
-        child: Text(text, style: const TextStyle(fontSize: 16)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

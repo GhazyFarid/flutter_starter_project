@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_starter_project/screens/login/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('Login Screen')));
+    return Scaffold(
+      appBar: AppBar(title: const Text('Login')),
+      body: const Padding(padding: EdgeInsets.all(16), child: LoginForm()),
+    );
   }
 }
