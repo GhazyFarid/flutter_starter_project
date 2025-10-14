@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginState {
@@ -40,7 +41,7 @@ class LoginNotifier extends Notifier<LoginState> {
     state = state.copyWith(password: value);
   }
 
-  Future<void> login() async {
+  Future<void> login({required VoidCallback onSuccess}) async {
     final email = state.email.trim().toLowerCase();
     final password = state.password.trim();
 
@@ -57,6 +58,7 @@ class LoginNotifier extends Notifier<LoginState> {
     // Misal: validasi sederhana
     if (email == "admin@gmail.com" && password == "123456") {
       state = state.copyWith(isLoading: false, errorMessage: 'Sukses');
+      onSuccess();
     } else {
       state = state.copyWith(
         isLoading: false,

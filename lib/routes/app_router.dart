@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_starter_project/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter_starter_project/screens/landing_page/landing_screen.dart';
 import 'package:flutter_starter_project/screens/login/login_screen.dart';
 import 'package:flutter_starter_project/screens/register/register_screen.dart';
@@ -13,6 +14,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/register',
         builder: (context, state) => const RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/dashboard',
+        builder: (context, state) => const DashboardScreen(),
       ),
     ],
   );
