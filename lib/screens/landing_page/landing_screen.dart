@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_project/widgets/primary_button.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../widgets/primary_button.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(

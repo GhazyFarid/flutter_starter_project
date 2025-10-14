@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_starter_project/widgets/primary_button.dart';
+
 import 'package:go_router/go_router.dart';
 import '../../../providers/auth_providers.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/password_text_field.dart';
+import '../../widgets/primary_button.dart';
 
 class LoginForm extends ConsumerWidget {
   const LoginForm({super.key});
@@ -39,30 +42,19 @@ class LoginForm extends ConsumerWidget {
                 const SizedBox(height: 32),
 
                 // Email field
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: const Icon(Icons.email_outlined),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
+                CustomTextField(
+                  label: 'Email',
                   onChanged: notifier.updateEmail,
                   keyboardType: TextInputType.emailAddress,
+                  prefixIcon: Icons.email_outlined,
                 ),
                 const SizedBox(height: 16),
 
                 // Password field
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    prefixIcon: const Icon(Icons.lock_outline),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  obscureText: true,
+                PasswordTextField(
+                  label: 'Password',
                   onChanged: notifier.updatePassword,
+                  prefixIcon: Icons.password_outlined,
                 ),
                 const SizedBox(height: 16),
 
