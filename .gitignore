@@ -123,3 +123,4 @@ app.*.symbols
 *.ipr
 *.iws
 .idea/
+.env
