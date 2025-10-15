@@ -40,7 +40,7 @@ class RegisterForm extends ConsumerWidget {
               // name
               CustomTextField(
                 label: 'Full Name',
-                onChanged: notifier.setEmail,
+                onChanged: notifier.setName,
                 keyboardType: TextInputType.name,
                 prefixIcon: Icons.person_outline,
               ),
@@ -100,7 +100,11 @@ class RegisterForm extends ConsumerWidget {
                 width: double.infinity,
                 child: PrimaryButton(
                   text: 'Register',
-                  onPressed: () => notifier.register(),
+                  onPressed: () => notifier.register(
+                    onSuccess: () {
+                      context.go('/login');
+                    },
+                  ),
                   isLoading: state.isLoading,
                 ),
               ),

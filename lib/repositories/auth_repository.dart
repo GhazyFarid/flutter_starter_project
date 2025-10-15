@@ -56,4 +56,32 @@ class AuthRepository {
       throw ApiExceptionHandler.handleDioException(e);
     }
   }
+
+  Future<Map<String, dynamic>> register({
+    required String username,
+    required String email,
+    required String noTelepon,
+    required String password,
+  }) async {
+    try {
+      final response = await _dio.post(
+        Endpoints.register,
+        data: {
+          'username': username,
+          'email': email,
+          'no_telepon_pribadi': noTelepon,
+          'password': password,
+        },
+      );
+      if (isSuccessStatusCode(response.statusCode)) {
+        return response.data;
+      } else {
+        throw ServerException(
+          'Terjadi kesalahan server. Code: ${response.statusCode}',
+        );
+      }
+    } on DioException catch (e) {
+      throw ApiExceptionHandler.handleDioException(e);
+    }
+  }
 }
