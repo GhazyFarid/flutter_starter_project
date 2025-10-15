@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_starter_project/models/login_state.dart';
 import 'package:flutter_starter_project/repositories/auth_repository.dart';
 
+import '../common/api_exceptions.dart';
+
 class LoginNotifier extends Notifier<LoginState> {
   late final AuthRepository _authRepository;
 
@@ -57,24 +59,13 @@ class LoginNotifier extends Notifier<LoginState> {
       state = state.copyWith(isLoading: false, errorMessage: '');
 
       onSuccess();
+    } on ApiException catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: e.message);
     } catch (e) {
-      final messageError = e.toString().toLowerCase();
-      String message;
-
-      // Pesan error
-      if (messageError.contains('401') || messageError.contains('invalid')) {
-        message = 'Email atau password salah';
-      } else if (messageError.contains('timeout')) {
-        message = 'Koneksi timeout, periksa jaringan Anda';
-      } else if (messageError.contains('socketexception')) {
-        message = 'Tidak dapat terhubung ke server';
-      } else {
-        message = 'Terjadi kesalahan, silakan coba lagi';
-      }
-
-      state = state.copyWith(isLoading: false, errorMessage: message);
-
-      debugPrint('Login error: $messageError');
+      state = state.copyWith(
+        isLoading: false,
+        errorMessage: 'Terjadi kesalahan, silakan coba lagi',
+      );
     }
   }
 }

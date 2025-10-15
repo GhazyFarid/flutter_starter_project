@@ -2,10 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../common/api_config.dart';
+import '../common/api_exception_handler.dart';
+import '../common/api_exceptions.dart';
+import '../common/endpoints.dart';
+import '../common/http_utils.dart';
 
 class AuthRepository {
   final Dio _dio;
-  bool _isSuccess(int? code) => code != null && code >= 200 && code < 300;
 
   AuthRepository({Dio? dio})
     : _dio =
@@ -36,20 +39,21 @@ class AuthRepository {
   }) async {
     try {
       final response = await _dio.post(
-        '/auth/login',
+        Endpoints.login,
         data: {'email': email, 'password': password},
       );
-      debugPrint('response status ${response.statusCode}');
-      if (_isSuccess(response.statusCode)) {
+
+      if (isSuccessStatusCode(response.statusCode)) {
         return response.data;
+      } else if (response.statusCode == 401) {
+        throw UnauthorizedException('Email atau password salah');
       } else {
-        throw Exception('${response.statusCode}: ${response.statusMessage} ');
+        throw ServerException(
+          'Terjadi kesalahan server. Code: ${response.statusCode}',
+        );
       }
     } on DioException catch (e) {
-      final message = e.response?.data['message'] ?? e.message;
-      final statusCode = e.response?.statusCode;
-
-      throw Exception('Error $statusCode: $message');
+      throw ApiExceptionHandler.handleDioException(e);
     }
   }
 }
