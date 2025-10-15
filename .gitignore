@@ -123,4 +123,6 @@ app.*.symbols
 *.ipr
 *.iws
 .idea/
+.vscode/
 .env
+
